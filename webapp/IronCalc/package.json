@@ -2,10 +2,10 @@
   "name": "@ironcalc/workbook",
   "version": "0.3.2",
   "type": "module",
-  "main": "./dist/ironcalc.js",
-  "module": "./dist/ironcalc.js",
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
   "source": "./src/index.ts",
-  "types": "./dist/index.d.ts",
+  "types": "./src/index.ts",
   "scripts": {
     "build": "vite build && tsc",
     "check": "biome check ./src",
@@ -14,16 +14,20 @@
     "storybook": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@ironcalc/wasm": "file:../../bindings/wasm/pkg",
     "@mui/material": "^7.1.1",
     "@mui/system": "^7.1.1",
     "i18next": "^25.2.1",
     "lucide-react": "^0.513.0",
+    "react": ">=18.0.0",
     "react-colorful": "^5.6.1",
+    "react-dom": ">=18.0.0",
     "react-i18next": "^15.5.2"
+  },
+  "dependencies": {
+    "@ironcalc/wasm": "file:../../bindings/wasm/pkg"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",

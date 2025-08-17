@@ -10,19 +10,17 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'IronCalc',
       // the proper extensions will be added
-      fileName: 'ironcalc',
+      fileName: (format) => `ironcalc.${format === 'umd' ? 'umd.js' : 'js'}`,
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library
-      external: ['react', 'react-dom', '@ironcalc/wasm'],
+      external: ['@ironcalc/wasm'],
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-          '@ironcalc/wasm': 'IronCalc',
+          '@ironcalc/wasm': 'IronCalcWasm',
         },
       },
     },

@@ -1,4 +1,37 @@
-import { type BorderOptions, BorderStyle, BorderType } from "@ironcalc/wasm";
+// TODO: These should be imported from @ironcalc/wasm once they're exported
+export enum BorderStyle {
+  None = 0,
+  Thin = 1,
+  Medium = 2,
+  Thick = 3,
+  Double = 4,
+  Dotted = 5,
+  Dashed = 6,
+  Hair = 7,
+  DashDot = 8,
+  DashDotDot = 9,
+  SlantDashDot = 10,
+}
+
+export enum BorderType {
+  All = 0,
+  Inner = 1,
+  Outer = 2,
+  Top = 3,
+  Right = 4,
+  Bottom = 5,
+  Left = 6,
+  None = 7,
+  Horizontal = 8,
+  Vertical = 9,
+}
+
+export interface BorderOptions {
+  color: string;
+  style: BorderStyle;
+  border: BorderType;
+}
+
 import Popover, { type PopoverOrigin } from "@mui/material/Popover";
 import { styled } from "@mui/material/styles";
 import {

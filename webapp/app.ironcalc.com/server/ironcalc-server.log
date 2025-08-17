@@ -1,0 +1,27 @@
+    Finished `release` profile [optimized] target(s) in 0.34s
+     Running `target/release/ironcalc_server`
+Rocket has launched from http://127.0.0.1:8000
+Model list: '[]'
+Model list: '[]'
+start upload
+start upload
+   >> I/O Error: Custom { kind: Other, error: "Error loading model: 'Zip Error: invalid Zip archive: Could not find central directory end'" }
+   >> No 500 catcher registered. Using Rocket default.
+   >> I/O Error: Custom { kind: Other, error: "Error loading model: 'Zip Error: invalid Zip archive: Could not find central directory end'" }
+   >> No 500 catcher registered. Using Rocket default.
+Model list: '[]'
+start upload
+end upload
+Model list: '[]'
+Model list: '[]'
+start upload
+end upload
+start upload
+end upload
+Model list: '[]'
+start upload
+end upload
+Model list: '[]'
+start upload
+end upload
+Warning: Received SIGTERM. Requesting shutdown.

@@ -64,11 +64,11 @@ interface ParsedReferenceType {
   absolute_row: boolean;
 }
 
-interface Reference {
+export interface Reference {
   Reference: ReferenceType;
 }
 
-interface Range {
+export interface Range {
   Range: {
     sheet: string | null;
     left: ParsedReferenceType;

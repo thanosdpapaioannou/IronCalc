@@ -14,7 +14,7 @@ use rocket::data::{Data, ToByteUnit};
 use rocket::http::{ContentType, Header};
 use rocket::response::Responder;
 
-const MAX_SIZE_MB: u8 = 20;
+const MAX_SIZE_MB: u8 = 50; // Increased from 20MB to support larger QOE files
 
 use rocket_db_pools::{Connection, Database};
 

@@ -15,6 +15,28 @@ fn to_js_error(error: String) -> JsError {
     JsError::new(&error.to_string())
 }
 
+/// Parse CSV string using csv-rs for proper RFC 4180 compliance
+/// Handles quoted fields, escaped quotes, and fields containing commas
+fn parse_csv_string(csv_str: &str) -> Result<String, JsError> {
+    use csv::ReaderBuilder;
+    use std::io::Cursor;
+    
+    let mut reader = ReaderBuilder::new()
+        .has_headers(false)
+        .flexible(true)
+        .from_reader(Cursor::new(csv_str));
+    
+    let mut result = Vec::new();
+    
+    for record_result in reader.records() {
+        let record = record_result.map_err(|e| JsError::new(&format!("CSV parse error: {}", e)))?;
+        let row: Vec<String> = record.iter().map(|field| field.to_string()).collect();
+        result.push(row.join("\t"));
+    }
+    
+    Ok(result.join("\n"))
+}
+
 /// Return an array with a list of all the tokens from a formula
 /// This is used by the UI to color them according to a theme.
 #[wasm_bindgen(js_name = "getTokens", unchecked_return_type = "MarkedToken[]")]
@@ -687,8 +709,12 @@ impl Model {
     ) -> Result<(), JsError> {
         let range: Area =
             serde_wasm_bindgen::from_value(area).map_err(|e| to_js_error(e.to_string()))?;
+        
+        // Parse CSV using csv-rs for proper RFC 4180 compliance
+        let parsed_csv = parse_csv_string(csv)?;
+        
         self.model
-            .paste_csv_string(&range, csv)
+            .paste_csv_string(&range, &parsed_csv)
             .map_err(|e| to_js_error(e.to_string()))
     }
 
